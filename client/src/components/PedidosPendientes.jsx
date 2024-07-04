@@ -9,13 +9,18 @@ function PedidosPendientes() {
   const [p_pendientes, setPendientes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [nextPage, setNextPage] = useState(null);
+  const [prevPage, setPrevPage] = useState(null);
+
   const fechaEntrega = new Date().toISOString().split("T")[0];
 
   useEffect(() => {
     const fetchPendientes = async () => {
       try {
         const data = await obtenerPedidosPendientes();
-        setPendientes(data);
+        setPendientes(data.results);
+        setNextPage(data.next)
+        setPrevPage(data.previous)
         setLoading(false);
       } catch (error) {
         console.error("Error al obtener los pedidos pendientes: ", error);
@@ -25,6 +30,22 @@ function PedidosPendientes() {
     };
     fetchPendientes();
   }, []);
+
+  const handlePageChange = async (pageUrl) => {
+    try {
+      setLoading(true);
+      const response = await fetch(pageUrl);
+      const data = await response.json();
+      setPendientes(data.results); // Actualiza los resultados de la página actual
+      setNextPage(data.next); // Actualiza el enlace a la siguiente página
+      setPrevPage(data.previous); // Actualiza el enlace a la página anterior
+      setLoading(false);
+    } catch (error) {
+      console.error("Error al cambiar de página: ", error);
+      setError("Error al cambiar de página.");
+      setLoading(false);
+    }
+  };
 
   if (loading) {
     return <div>Cargando...</div>;
@@ -150,6 +171,16 @@ function PedidosPendientes() {
           ))}
         </tbody>
       </table>
+      {prevPage && (
+        <button onClick={() => handlePageChange(prevPage)}>
+          Página Anterior
+        </button>
+      )}
+      {nextPage && (
+        <button onClick={() => handlePageChange(nextPage)}>
+          Siguiente Página
+        </button>
+      )}
     </div>
   );
 }

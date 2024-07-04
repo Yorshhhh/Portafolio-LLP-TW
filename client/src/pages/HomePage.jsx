@@ -53,9 +53,9 @@ function HomePage() {
       <Bienvenida />
 
       {/* PRODUCTOS DESTACADOS */}
-      <section className="section" id="productos">
-        <div className="container">
-          <h1>Productos Destacados!</h1>
+      <section className="flex flex-col items-center my-8 mx-4">
+        <h1 className="font-bold text-2xl">Productos Destacados!</h1>
+        <div className="flex flex-wrap my-8 gap-8 justify-center">
           {productos.map((producto) => (
             <CardProducts producto={producto} />
           ))}

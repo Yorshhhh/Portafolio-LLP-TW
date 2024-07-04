@@ -8,29 +8,26 @@ function CardProducts({ producto }) {
   };
 
   return (
-
-    <div style={{width: "400px"}}>
-      <Link to={`/producto/${producto.cod_producto}`}>
-        <div className="className-thumb">
-          <div className="imagen">
+    <div className="w-[250px] h-[400px] border-1 rounded-md bg-white shadow-md hover:shadow-xl">
+      <div className="flex flex-col justify-between h-100 items-center">
+        <div className="h-[300px] bg-cover">
+          <Link to={`/producto/${producto.cod_producto}`}>
             <img
               src={producto.imagen} // Usar la URL real de la imagen del producto
-              className="object-fit-contain border"
+              className="h-100 bg-cover"
               alt={`Imagen de ${producto.nombre_producto}`}
             />
-          </div>
-
-          <div className="className-info">
-            <h3 className="mb-1">{producto.nombre_producto}</h3>
-            <h2>Cod Producto: {producto.cod_producto}</h2>
-            <p className="mt-3">Descripcion: {producto.descripcion_producto}</p>
-            <p>Grado alcoholico: {producto.grado_alcoholico}</p>
-            <p>Cantidad: {producto.litros} CC.</p>
-            <p>Precio: ${producto.precio_producto}</p>
-            <p>Stock: {producto.stock_producto}</p>
-          </div>
+          </Link>
         </div>
-      </Link>
+
+        <div className="mb-2">
+          <h3 className="mb-1">{producto.nombre_producto}</h3>
+          <p>Precio: ${producto.precio_producto}</p>
+        </div>
+        <button className="w-full bg-orange-400 py-2 px-6 text-white text-lg font-bold rounded-bt-md hover:bg-orange-600">
+          Agregar al carrito
+        </button>
+      </div>
     </div>
   );
 }

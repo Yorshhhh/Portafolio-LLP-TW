@@ -5,13 +5,17 @@ function PedidosEntregados() {
   const [p_entregados, setEntregados] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [nextPage, setNextPage] = useState(null);
+  const [prevPage, setPrevPage] = useState(null);
 
   useEffect(() => {
     const fetchEntregados = async () => {
       try {
         const data = await obtenerPedidosEntregados();
-        console.log(data)
-        setEntregados(data);
+        console.log(data);
+        setEntregados(data.results);
+        setNextPage(data.next);
+        setPrevPage(data.previous);
         setLoading(false);
       } catch (error) {
         console.error("Error al obtener los pedidos entregados: ", error);
@@ -21,6 +25,23 @@ function PedidosEntregados() {
     };
     fetchEntregados();
   }, []);
+
+  const handlePageChange = async (pageUrl) => {
+    try {
+      setLoading(true);
+      const response = await fetch(pageUrl);
+      const data = await response.json();
+      setEntregados(data.results); // Actualiza los resultados de la página actual
+      setNextPage(data.next); // Actualiza el enlace a la siguiente página
+      setPrevPage(data.previous); // Actualiza el enlace a la página anterior
+      setLoading(false);
+    } catch (error) {
+      console.error("Error al cambiar de página: ", error);
+      setError("Error al cambiar de página.");
+      setLoading(false);
+    }
+  };
+
   if (loading) {
     return <div>Cargando...</div>;
   }
@@ -115,6 +136,16 @@ function PedidosEntregados() {
             ))}
           </tbody>
         </table>
+        {prevPage && (
+          <button onClick={() => handlePageChange(prevPage)}>
+            Página Anterior
+          </button>
+        )}
+        {nextPage && (
+          <button onClick={() => handlePageChange(nextPage)}>
+            Siguiente Página
+          </button>
+        )}
       </div>
     </>
   );

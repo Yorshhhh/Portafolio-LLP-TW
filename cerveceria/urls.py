@@ -18,6 +18,6 @@ urlpatterns = [
     path("historial_pedidos/", HistorialPedidosView.as_view(),name='historial_pedidos'),
     path('ganancias_producto/', VentasProductoView.as_view(), name='ganancias_por_producto'),
     path('pedidos_pendientes/', PedidoPendienteView.as_view(), name='pedidos_pendientes'),
-    path('pedidos_entregados/', PedidoEntregadoView.as_view(), name='pedidos_entregados'),
+    path('pedidos_entregados/', PedidoEntregadoView.as_view(), name='pedidos_entregados')
 ]
 #MOISES SEPULVEDA, OJO

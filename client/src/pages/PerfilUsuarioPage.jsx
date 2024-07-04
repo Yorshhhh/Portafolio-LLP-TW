@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { actualizarDireccion } from "../api/cerveceria_API";
-import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import AgregarProducto from "../components/AgregarProducto";
 import RegisterAdmin from "../components/RegisterAdmin";
@@ -26,8 +24,6 @@ function PerfilUsuarioPage() {
     pendientes: false,
     entregados: false,
   });
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     const userJson = localStorage.getItem("usuario");

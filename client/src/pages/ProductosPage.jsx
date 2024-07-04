@@ -47,19 +47,10 @@ function ProductosPage() {
         clearCartHandler={clearCartHandler}
       />
 
-      <div className="cont">
-        <div className="row">
-          {productos.map((producto) => (
-            <div
-              key={producto.cod_producto}
-              className="col-lg-4 col-md-6 col-12"
-              data-aos="fade-up"
-              data-aos-delay="400"
-            >
-              <CardProducts producto={producto} />
-            </div>
-          ))}
-        </div>
+      <div className="flex flex-wrap gap-4 justify-center mt-4">
+        {productos.map((producto) => (
+          <CardProducts key={producto.cod_producto} producto={producto} />
+        ))}
       </div>
     </>
   );
