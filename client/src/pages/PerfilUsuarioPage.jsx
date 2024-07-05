@@ -83,47 +83,81 @@ function PerfilUsuarioPage() {
         </div>
 
         {user.is_staff ? (
-          <div className="user-profile-staff-actions flex flex-col items-start justify-start">
+          <div className="user-profile-staff-actions flex flex-col items-center justify-center">
             <h1>Funciones del administrador</h1>
-            <button
-              className="user-profile-button user-profile-staff-button py-1 px-2 text-sm rounded-md w-32 h-8"
-              style={{ width: "fit-content" }}
-              onClick={() => toggleSection("agregarProducto")}
-            >
-              {showSection.agregarProducto
-                ? "Ocultar Agregar Producto"
-                : "Agregar Producto"}
-            </button>
+            <div className="flex justify-center gap-4 mb-8">
+              <button
+                className="user-profile-button user-profile-staff-button py-1 px-2 text-sm rounded-md w-32 h-8"
+                style={{ width: "fit-content" }}
+                onClick={() => toggleSection("agregarProducto")}
+              >
+                {showSection.agregarProducto
+                  ? "Ocultar Agregar Producto"
+                  : "Agregar Producto"}
+              </button>
+
+              <button
+                className="user-profile-button user-profile-staff-button py-1 px-2 text-sm rounded-md w-32 h-8"
+                style={{ width: "fit-content" }}
+                onClick={() => toggleSection("crearAdmin")}
+              >
+                {showSection.crearAdmin
+                  ? "Ocultar Crear Administrador"
+                  : "Crear Administrador"}
+              </button>
+
+              <button
+                className="user-profile-button user-profile-staff-button py-1 px-2 text-sm rounded-md w-32 h-8"
+                style={{ width: "fit-content" }}
+                onClick={() => toggleSection("modificarProducto")}
+              >
+                {showSection.modificarProducto
+                  ? "Ocultar Modificar Producto"
+                  : "Modificar Productos"}
+              </button>
+
+              <button
+                className="user-profile-button user-profile-staff-button py-1 px-2 text-sm rounded-md w-32 h-8"
+                style={{ width: "fit-content" }}
+                onClick={() => toggleSection("ganancias")}
+              >
+                {showSection.ganancias
+                  ? "Ocultar Ventas por Producto"
+                  : "Mostrar Ventas por Producto"}
+              </button>
+
+              <button
+                className="user-profile-button user-profile-staff-button py-1 px-2 text-sm rounded-md w-32 h-8"
+                style={{ width: "fit-content" }}
+                onClick={() => toggleSection("pendientes")}
+              >
+                {showSection.pendientes
+                  ? "Ocultar Pedidos Pendientes"
+                  : "Mostrar Pedidos Pendientes"}
+              </button>
+              <button
+                className="user-profile-button user-profile-staff-button py-1 px-2 text-sm rounded-md w-32 h-8"
+                style={{ width: "fit-content" }}
+                onClick={() => toggleSection("entregados")}
+              >
+                {showSection.entregados
+                  ? "Ocultar Pedidos Entregados"
+                  : "Mostrar Pedidos Entregados"}
+              </button>
+            </div>
+
             {showSection.agregarProducto && (
               <div className="m-auto h-screen w-full flex justify-center items-center">
                 <AgregarProducto />
               </div>
             )}
 
-            <button
-              className="user-profile-button user-profile-staff-button py-1 px-2 text-sm rounded-md w-32 h-8"
-              style={{ width: "fit-content" }}
-              onClick={() => toggleSection("crearAdmin")}
-            >
-              {showSection.crearAdmin
-                ? "Ocultar Crear Administrador"
-                : "Crear Administrador"}
-            </button>
             {showSection.crearAdmin && (
               <div className="m-auto h-screen w-full flex justify-center items-center">
                 <RegisterAdmin />
               </div>
             )}
 
-            <button
-              className="user-profile-button user-profile-staff-button py-1 px-2 text-sm rounded-md w-32 h-8"
-              style={{ width: "fit-content" }}
-              onClick={() => toggleSection("modificarProducto")}
-            >
-              {showSection.modificarProducto
-                ? "Ocultar Modificar Producto"
-                : "Modificar Productos"}
-            </button>
             {showSection.modificarProducto && (
               <div className="m-auto h-screen w-full flex justify-center items-center">
                 {" "}
@@ -131,15 +165,6 @@ function PerfilUsuarioPage() {
               </div>
             )}
 
-            <button
-              className="user-profile-button user-profile-staff-button py-1 px-2 text-sm rounded-md w-32 h-8"
-              style={{ width: "fit-content" }}
-              onClick={() => toggleSection("ganancias")}
-            >
-              {showSection.ganancias
-                ? "Ocultar Ventas por Producto"
-                : "Mostrar Ventas por Producto"}
-            </button>
             {showSection.ganancias && (
               <div className="m-auto h-screen w-full flex justify-center items-center">
                 {" "}
@@ -147,30 +172,12 @@ function PerfilUsuarioPage() {
               </div>
             )}
 
-            <button
-              className="user-profile-button user-profile-staff-button py-1 px-2 text-sm rounded-md w-32 h-8"
-              style={{ width: "fit-content" }}
-              onClick={() => toggleSection("pendientes")}
-            >
-              {showSection.pendientes
-                ? "Ocultar Pedidos Pendientes"
-                : "Mostrar Pedidos Pendientes"}
-            </button>
             {showSection.pendientes && (
               <div className="m-auto h-screen w-full flex justify-center items-center">
                 <PedidosPendientes />{" "}
               </div>
             )}
 
-            <button
-              className="user-profile-button user-profile-staff-button py-1 px-2 text-sm rounded-md w-32 h-8"
-              style={{ width: "fit-content" }}
-              onClick={() => toggleSection("entregados")}
-            >
-              {showSection.entregados
-                ? "Ocultar Pedidos Entregados"
-                : "Mostrar Pedidos Entregados"}
-            </button>
             {showSection.entregados && (
               <div className="m-auto h-screen w-full flex justify-center items-center">
                 <PedidosEntregados />

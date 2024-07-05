@@ -46,7 +46,7 @@ function ProductosPage() {
         setShowCart={setShowCart}
         clearCartHandler={clearCartHandler}
       />
-
+      <h1 className="text-black font-bold flex justify-center border-1 rounded-md">Todos los productos</h1>
       <div className="flex flex-wrap gap-4 justify-center mt-4">
         {productos.map((producto) => (
           <CardProducts key={producto.cod_producto} producto={producto} />

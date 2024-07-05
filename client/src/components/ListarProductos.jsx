@@ -146,7 +146,7 @@ export default function ListarProductos() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div className="my-[2rem]  flex flex-col items-center justify-center bg-gray-100">
       <div className="w-full max-w-screen-xl p-4">
         <h1 className="text-3xl font-bold text-center mb-8">
           Lista de Productos

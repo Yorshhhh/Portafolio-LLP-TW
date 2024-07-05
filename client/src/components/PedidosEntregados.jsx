@@ -12,7 +12,6 @@ function PedidosEntregados() {
     const fetchEntregados = async () => {
       try {
         const data = await obtenerPedidosEntregados();
-        console.log(data);
         setEntregados(data.results);
         setNextPage(data.next);
         setPrevPage(data.previous);
