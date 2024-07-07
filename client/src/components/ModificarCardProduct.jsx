@@ -259,7 +259,6 @@ function ModificarCardProduct({ producto }) {
 
 ModificarCardProduct.propTypes = {
   producto: PropTypes.object.isRequired,
-  onUpdate: PropTypes.func, // Función para actualizar el producto en la lista principal
 };
 
 export default ModificarCardProduct;

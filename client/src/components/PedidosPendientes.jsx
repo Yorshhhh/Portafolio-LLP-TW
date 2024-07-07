@@ -114,6 +114,15 @@ function PedidosPendientes() {
     });
   };
 
+    // Función para formatear la fecha
+    const formatearFecha = (fechaISO) => {
+      const fecha = new Date(fechaISO);
+      const dia = String(fecha.getDate()).padStart(2, '0');
+      const mes = String(fecha.getMonth() + 1).padStart(2, '0'); // Los meses en JavaScript comienzan desde 0.
+      const año = fecha.getFullYear();
+      return `${dia}-${mes}-${año}`;
+    };
+
   return (
     <div>
       <h2>Pedidos Pendientes</h2>
@@ -158,7 +167,7 @@ function PedidosPendientes() {
                   </li>
                 </ul>
               </td>
-              <td>{pedidoAgrupado.fecha_pedido}</td>
+              <td>{formatearFecha(pedidoAgrupado.fecha_pedido)}</td> {/* Aquí se formatea la fecha */}
               <td>
                 <button
                   onClick={() => handleConfirmar(pedidoAgrupado)}

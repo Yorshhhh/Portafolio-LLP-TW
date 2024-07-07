@@ -15,6 +15,7 @@ function PerfilUsuarioPage() {
   const [carro, setCarrito] = useState([]);
   // Estado para mostrar/ocultar diferentes secciones
   const [showSection, setShowSection] = useState({
+    infoUser: false,
     agregarProducto: false,
     crearAdmin: false,
     modificarProducto: false,
@@ -77,15 +78,23 @@ function PerfilUsuarioPage() {
     <>
       <Navbar />
       <div className="user-profile-center-container">
+        <Ganancias />
         <h1>Contenedor Principal</h1>
-        <div>
-          <UserCard user={user} />
-        </div>
 
         {user.is_staff ? (
           <div className="user-profile-staff-actions flex flex-col items-center justify-center">
             <h1>Funciones del administrador</h1>
             <div className="flex justify-center gap-4 mb-8">
+              <button
+                className="user-profile-button user-profile-staff-button py-1 px-2 text-sm rounded-md w-32 h-8"
+                style={{ width: "fit-content" }}
+                onClick={() => toggleSection("infoUser")}
+              >
+                {showSection.infoUser
+                  ? "Ocultar Informacion del Usuario"
+                  : "Informacion del Usuario"}
+              </button>
+
               <button
                 className="user-profile-button user-profile-staff-button py-1 px-2 text-sm rounded-md w-32 h-8"
                 style={{ width: "fit-content" }}
@@ -145,6 +154,11 @@ function PerfilUsuarioPage() {
                   : "Mostrar Pedidos Entregados"}
               </button>
             </div>
+            {showSection.infoUser && (
+              <div className="m-auto h-screen w-full flex justify-center items-center">
+                <UserCard user={user} />
+              </div>
+            )}
 
             {showSection.agregarProducto && (
               <div className="m-auto h-screen w-full flex justify-center items-center">

@@ -17,6 +17,7 @@ function ProductosPage() {
   } = useCart();
 
   const [productos, setProductos] = useState([]);
+  const [sortCriteria, setSortCriteria] = useState("default");
 
   const clearCartHandler = () => {
     clearCart(setCartItems, setShowCart);
@@ -31,9 +32,19 @@ function ProductosPage() {
     loadProductos();
   }, []);
 
-  // Función para manejar clics en el botón de agregar al carrito
-  const handleAgregarCarritoClick = (producto) => {
-    addToCart(producto); // Llama a addToCart con el producto
+  const handleSortChange = (e) => {
+    setSortCriteria(e.target.value);
+  };
+
+  const sortProducts = (products, criteria) => {
+    switch (criteria) {
+      case "price-asc":
+        return products.sort((a, b) => a.precio_producto - b.precio_producto);
+      case "price-desc":
+        return products.sort((a, b) => b.precio_producto - a.precio_producto);
+      default:
+        return products;
+    }
   };
 
   return (
@@ -46,9 +57,18 @@ function ProductosPage() {
         setShowCart={setShowCart}
         clearCartHandler={clearCartHandler}
       />
-      <h1 className="text-black font-bold flex justify-center border-1 rounded-md">Todos los productos</h1>
+      <h1 className="text-black font-bold flex justify-center border-1 rounded-md">
+        Todos los productos
+      </h1>
+      <div className="flex justify-start mb-4">
+        <select onChange={handleSortChange} value={sortCriteria}>
+          <option value="default">Ordenar por...</option>
+          <option value="price-asc">Precio: Menor a Mayor</option>
+          <option value="price-desc">Precio: Mayor a Menor</option>
+        </select>
+      </div>
       <div className="flex flex-wrap gap-4 justify-center mt-4">
-        {productos.map((producto) => (
+        {sortProducts(productos, sortCriteria).map((producto) => (
           <CardProducts key={producto.cod_producto} producto={producto} />
         ))}
       </div>
